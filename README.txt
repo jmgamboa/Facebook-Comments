@@ -8,7 +8,8 @@ Create a table that matches up to the the model
 
 
 How to Run
-QUEUE=* APP_INCLUDE=JobPush.php php ../vendor/chrisboulton/php-resque/resque.php will que jobs
+QUEUE=* APP_INCLUDE=JobPush.php php ../vendor/chrisboulton/php-resque/resque.php 
+^ will que jobs
 
 
 TODO
@@ -19,4 +20,6 @@ MySQL create table
 
 Make it work out of the box
 
+Make a better read me
 
+Learn how to open source this thing
