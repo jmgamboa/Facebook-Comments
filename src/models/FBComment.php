@@ -3,14 +3,14 @@
 class FbComment {
 
   var $fb_comment_id; // Varchar 
-  var $post_id=0;  // Big Int
-  var $post_permalink=''; // Varchar 
-  var $fb_user_name=''; // Varchar
-  var $fb_user_id=''; // Varchar
+  var $post_id;  // Big Int
+  var $post_permalink; // Varchar 
+  var $fb_user_name; // Varchar
+  var $fb_user_id; // Varchar
   var $message; // Long Text
   var $like_count; // Int
   var $fb_created_time; // Datetime
-  var $parent_comment_id = 0; // Varchar
+  var $parent_comment_id; // Varchar
   var $comment_thread_id; // Int
   var $comment_item_id;  // Int
   

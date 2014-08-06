@@ -6,9 +6,9 @@ class GetReplies{
 	function perform(){
 	    $con = new mysqli();
 	    $type = "reply";
-	    $controller = new CommentController()
-		$batch_limit = 1000;
-		while($batch_limit<20000){
+	    $controller = new CommentController();
+	    $batch_limit = 0;
+		while($batch_limit<5000){
 			// Get fbids
 			$fbids = $this->get_fbids($con, $batch_limit);
 			// If comment has replies; update records with the parent id

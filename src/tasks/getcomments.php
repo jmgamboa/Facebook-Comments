@@ -9,9 +9,10 @@ class GetComments{
 		// Set batch to last key
 		$controller = new CommentController();
 		$type = "comment";
-		$batch_limit = $controller->last_batch_key($con, $type);
+		// $batch_limit = $controller->last_batch_key($con, $type);
+		$batch_limit = 0;
 		// Batch requests
-		while($batch_limit<20000){
+		while($batch_limit<5000){
 			// Get batch of posts
 			$posts = $this->get_posts($batch_limit, $con);
 			// Send to api endpoint
