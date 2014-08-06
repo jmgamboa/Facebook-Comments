@@ -57,10 +57,4 @@ class FbComment {
 
   }
 
-  // Update meta table 
-  function update_thread($comment, $con){ 
-    $controller = new CommentController();
-    $controller->update_thread($comment, $con);
-  }
-
 }

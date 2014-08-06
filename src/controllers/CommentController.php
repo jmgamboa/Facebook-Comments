@@ -10,25 +10,6 @@ class CommentController{
 
   }
 
-   // Update meta table 
-  function update_thread($comment, $con){ 
-    // Set now var for update 
-    $now = date('Y-m-d H:i:s');
-    $permalink = $comment->post_permalink; 
-    // if record exists insert, if it does not update 
-    $sql_exist = "SELECT * FROM fbcomment_thread_info WHERE post_permalink='$permalink'";
-    $results = $con->query($sql_exist);
-    $exists = $results->num_rows;
-    if($exists < 1 ){
-      // insert
-      $insert_query = "INSERT INTO fbcomment_thread_info SET post_id='$comment->post_id', post_permalink='$comment->post_permalink', check_date='$now'";
-      $con->query($insert_query);
-    } else {
-      // update
-      $update_query = "UPDATE fb_comment_thrtead_info SET check_count=check_count+1, check_date='$now' WHERE post_permalink=$permalink";
-      $con->query($update_query);
-    }
-  }
 
    // Update comment as a reply by setting parent id
    function save_reply($comment, $con, $fb_comment_id){
@@ -66,19 +47,5 @@ class CommentController{
 		$fb_comments_obj = json_decode($result);
 		return $fb_comments_obj;
 	}
-
-	function save_batch_key($batch_key, $con, $type){
-	    // increase batch range limitter
-	    $insert_query = "INSERT INTO batch_key_info SET batch_key=$batch_key, batch_type=$type";
-	    $con->query($insert_query);
-	}
-	
-	function last_batch_key($con, $type){
-		$check_batch = mysqli_query($con,"SELECT * FROM batch_key_info WHERE batch_type=$type ORDER BY created DESC LIMIT 1");
-		while($row = mysqli_fetch_array($check_batch)) {
-		  $batch_limit = $row['batch_key'];
-		}
-	}
-
 
 }

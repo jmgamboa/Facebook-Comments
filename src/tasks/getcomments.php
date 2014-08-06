@@ -4,14 +4,12 @@ class GetComments{
 
 	// Runs on init for resque
 	function perform(){
-		// Establish conenction
+		// Establish conenction and controller
 		$con = new mysqli();
-		// Set batch to last key
 		$controller = new CommentController();
-		$type = "comment";
-		// $batch_limit = $controller->last_batch_key($con, $type);
-		$batch_limit = 0;
+
 		// Batch requests
+		$batch_limit = 0;
 		while($batch_limit<5000){
 			// Get batch of posts
 			$posts = $this->get_posts($batch_limit, $con);
@@ -23,7 +21,6 @@ class GetComments{
 			}
 			// Increment and save batch key
 			$batch_limit += 500;
-			$controller->save_batch_key($batch_limit, $con, $type);
 		}
 		// Close connection thn enque
 		$con->close();
@@ -49,7 +46,6 @@ class GetComments{
 			foreach ($fb_comments_data as $fb_comment){
 				$comment = new FBComment($post_obj, $fb_comment);
 				$comment->save($comment, $con);
-				$comment->update_thread($comment, $con);
 			}
 			// If pagination is set, recrusively call the function
 			if(isset($fb_commentents_obj->paging->next)){
@@ -59,6 +55,5 @@ class GetComments{
 		}
 	}
 }
-
 
 ?>

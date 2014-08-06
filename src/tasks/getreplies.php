@@ -4,8 +4,8 @@ class GetReplies{
 
 	// function to be called on init or perform **************************
 	function perform(){
+		// Establish connection and comment
 	    $con = new mysqli();
-	    $type = "reply";
 	    $controller = new CommentController();
 	    $batch_limit = 0;
 		while($batch_limit<5000){
@@ -17,9 +17,7 @@ class GetReplies{
 				$endpoint = 'http://graph.facebook.com/' . $fb_comment_id . '/comments?limit=1';
 				$this->get_replies($endpoint, $fb_comment_id, $con);
 			}
-			// increase for next batch set. Note batch_limit must increment the same amount as the second param in the limit query (fbids function)
 			$batch_limit += 500;
-			$controller->save_batch_key($batch_limit, $con, $type);
 		}
 		// close connection
 		$con->close();
@@ -37,7 +35,6 @@ class GetReplies{
 	// Get, Format, and Save comments which are replies, using Fbid
 	function get_replies($endpoint, $fbid, $con){
 		// Get and Format api response
-		echo 'getting ze repliessss';
 		$controller = new CommentController();
 		$fb_comments_obj = $controller->curl_and_jdecode($endpoint);
 		// If response not empty; create, save, and decode pagination
