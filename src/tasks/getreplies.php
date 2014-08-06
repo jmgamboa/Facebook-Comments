@@ -23,7 +23,7 @@ class GetReplies{
 		}
 		// close connection
 		$con->close();
-		// Resque::enqueue('durrr', 'GetReplies');
+		Resque::enqueue('durrr', 'GetReplies');
 	}
 	
 	// Get existing FBID's

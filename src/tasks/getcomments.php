@@ -32,7 +32,7 @@ class GetComments{
 
 	function get_posts($batch_limit, $con){
 		// Get old url articles within batch range
-		$post_sql = "SELECT * FROM firm_article WHERE domain='elitedaily.com' LIMIT $batch_limit, 500";
+		$post_sql = "SELECT * FROM firm_article LIMIT $batch_limit, 500";
 		$posts = $con->query($post_sql);
 		return $posts;
 	}
