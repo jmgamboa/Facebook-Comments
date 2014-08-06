@@ -1,39 +1,22 @@
-A light PHP package that saves all facebook comments and comment replies
+
+A light PHP package that saves all facebook comments and comment replies to you database automated through a job que
+Dependencies managed by composer
+
+run composer.phar install
+
+Create a table that matches up to the the model
 
 
+How to Run
+QUEUE=* APP_INCLUDE=JobPush.php php ../vendor/chrisboulton/php-resque/resque.php will que jobs
 
-Old orm
-<?php
-// class JORM{
 
-// 	var $sql;
-	
-// 	function __construct($theobj){
-// 		$this->sql = $this->sqlstring_insert($theobj);
-// 		$this->mysglinsert($this->sql);
-// 	}
+TODO
 
-// 	function mysglinsert($sql){
-// 		print_r($sql);
-// 	}
+Make things generally more "modular"
 
-// 	function sqlstring_insert($theobj){
-// 		$count = 0;
-// 		$columns = "";
-// 		$varcount = count(get_object_vars($theobj));
+MySQL create table  
 
-// 		$prestring = "INSERT INTO fbcommenttest SET";
-// 		foreach($theobj as $key => $value) {
-// 			$count++;
-// 			$columns .= " $key='$value'";
-// 			if ($count != $varcount ){
-// 				$columns .= ",";
-// 			}	
-// 		}
-// 		$endstring = ";";
+Make it work out of the box
 
-// 		$result = $prestring . $columns . $endstring;
-// 		return $result;
-	// }s
-// }
-?>
+
