@@ -7,21 +7,15 @@ class GetComments{
 		// Establish conenction and controller
 		$con = new mysqli();
 		$controller = new CommentController();
-
-		// Batch requests
-		$batch_limit = 0;
-		while($batch_limit<5000){
-			// Get batch of posts
-			$posts = $this->get_posts($batch_limit, $con);
-			// Send to api endpoint
-			foreach ($posts as $post){
-				$url = $post['url'];
-				$endpoint = 'http://graph.facebook.com/comments?id=' .  $url . '&filter=stream&limit=200';
-				$this->get_comments($endpoint, $post, $con);
-			}
-			// Increment and save batch key
-			$batch_limit += 500;
+		// Get batch of posts
+		$posts = $this->get_posts($batch_limit, $con);
+		// Send to api endpoint
+		foreach ($posts as $post){
+			$url = $post['url'];
+			$endpoint = 'http://graph.facebook.com/comments?id=' .  $url . '&filter=stream&limit=200';
+			$this->get_comments($endpoint, $post, $con);
 		}
+		// Increment and save batch key
 		// Close connection thn enque
 		$con->close();
 		Resque::enqueue('durrr', 'GetComments');

@@ -7,17 +7,13 @@ class GetReplies{
 		// Establish connection and comment
 	    $con = new mysqli();
 	    $controller = new CommentController();
-	    $batch_limit = 0;
-		while($batch_limit<5000){
-			// Get fbids
-			$fbids = $this->get_fbids($con, $batch_limit);
-			// If comment has replies; update records with the parent id
-			foreach ($fbids as $fbid){
-				$fb_comment_id = $fbid['fb_comment_id'];
-				$endpoint = 'http://graph.facebook.com/' . $fb_comment_id . '/comments?limit=1';
-				$this->get_replies($endpoint, $fb_comment_id, $con);
-			}
-			$batch_limit += 500;
+		// Get fbids
+		$fbids = $this->get_fbids($con, $batch_limit);
+		// If comment has replies; update records with the parent id
+		foreach ($fbids as $fbid){
+			$fb_comment_id = $fbid['fb_comment_id'];
+			$endpoint = 'http://graph.facebook.com/' . $fb_comment_id . '/comments?limit=1';
+			$this->get_replies($endpoint, $fb_comment_id, $con);
 		}
 		// close connection
 		$con->close();

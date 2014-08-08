@@ -10,7 +10,6 @@ class CommentController{
 
   }
 
-
    // Update comment as a reply by setting parent id
    function save_reply($comment, $con, $fb_comment_id){
       // Get responses fbid; child fbid
