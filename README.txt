@@ -1,21 +1,13 @@
-A light PHP package that saves all facebook comments and comment replies to you database automated through a job que
-
-Dependencies managed by composer
-
-run composer.phar install
-
-
-How to Run
-QUEUE=* APP_INCLUDE=JobPush.php php ../vendor/chrisboulton/php-resque/resque.php 
-^ will que jobs
+A wordpress plugin that saves all your facebook comments as native wordpress comemnts
 
 
 TODO
 
-Make things generally more "modular"
+Change the hardcode table prefix 'wp_posts' so a developer can set the prefix to their own table name
 
-MySQL create table  
+Setup as a wp cronjob so it will get all the comments
 
-Make it work out of the box
+Set the the hardcode batch limits to something you want in getcomments.php and getreplies.php
 
-Make a better read me
+
+Note* if you switch the out the prefix table names, then activate the plugin, the code should work out of the box
