@@ -2,15 +2,15 @@
 /*
  * @package Facebook Comments
  * @author Joaquin Gamboa
- * @version 1.0 
+ * @version 1.0
  */
 /*
   Plugin Name: Facebook Comments
-  Plugin URI: sdfsdfsdfsdfsdfsdfsdfsdfsdf
+  Plugin URI: http://lsjdflksjdlfk.com
   Description: This plugin allows you to save comments originally on facebook.
   Author: Joaquin Gamboa
   Version: 1.0
-  Author URI: sdfsdfsdfsdfsdfsdfsdf
+  Author URI: http://nodinosaursallowed.com
  */
 
 require_once('src/models/FBComment.php');
@@ -49,19 +49,19 @@ function get_post_reply($postid){
 
 
 function batch_get_fb_replies(){
+
   // get last ID
   $postid = get_transient( 'fb_reply_last_processsed_post');
   $controller = new CommentController();
   $postid = $controller->get_smaller_post($postid);
   $reply_post_id = get_post_reply($postid);
   echo $reply_post_id;
-  die(); // this is required to return a proper result
+  die();/ this is required to return a proper result
 
 }
 
 // add the function call to the native wordpress ajax: this calls batch get_fbcomemnts
 add_action( 'wp_ajax_batch_fb_comments_ajax', 'batch_get_fb_comments' );
-
 add_action( 'wp_ajax_batch_fb_comments_ajax', 'batch_get_fb_replies' );
 
 // admin page source

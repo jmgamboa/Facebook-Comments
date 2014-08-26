@@ -35,7 +35,7 @@ class FBComment {
       $this->comment_karma = $fbcomment->like_count;
       $this->comment_approved = 1;
       $this->format_date($fbcomment);
-      $this->comment_type = "facebook";
+      $this->comment_type = "fbcomment";
       $this->meta_fbid = $fbcomment->id;
       $this->set_meta_info($fbcomment);
 
